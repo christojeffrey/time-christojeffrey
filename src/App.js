@@ -15,7 +15,7 @@ function App() {
   console.log("weeksleft");
   console.log(weeksleft);
   // if today == birthday
-  if (now.getDate() == bday.getDate() && now.getMonth() == bday.getMonth()) {
+  if (now.getDate() === bday.getDate() && now.getMonth() === bday.getMonth()) {
     return (
       <div className="w-screen h-screen bg-neutral-900 flex items-center justify-center">
         {/* background */}
