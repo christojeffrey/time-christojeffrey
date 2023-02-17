@@ -65,7 +65,7 @@ function App() {
             <div>{weeksleft}&nbsp;</div>
             <div>{weeksleft === 1 ? "week" : "weeks"} left</div>
           </div>
-          <div className="text-neutral-500 font-semibold">before I turn {now.getFullYear() + 1 - 2002}</div>
+          <div className="text-neutral-500 font-semibold">before I turn {now.getFullYear() - 2002}</div>
           <div className="text-neutral-500 font-semibold mt-14">{customText}</div>
         </div>
       </div>
