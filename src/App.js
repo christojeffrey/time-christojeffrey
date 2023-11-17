@@ -1,7 +1,7 @@
 //semua disini, toh relative straight forward
 function App() {
   //time now
-  let now = new Date(2023, 8, 3);
+  let now = new Date();
 
   //next birthday
   let nearestFutureBirthday = new Date(now.getFullYear(), 8, 4);
