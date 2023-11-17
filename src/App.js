@@ -1,19 +1,24 @@
 //semua disini, toh relative straight forward
 function App() {
   //time now
-  let now = new Date();
+  let now = new Date(2023, 8, 3);
 
   //next birthday
-  let bday = new Date(now.getFullYear(), 8, 4);
-  let passBirthday = false;
-  if (now > bday) {
-    passBirthday = true;
-  }
+  let nearestFutureBirthday = new Date(now.getFullYear(), 8, 4);
+  nearestFutureBirthday = now > nearestFutureBirthday ? new Date(now.getFullYear() + 1, 8, 4) : nearestFutureBirthday;
 
-  //get weeks left before next birthday
-  let weeksleft = Math.abs(bday - now) / (1000 * 3600 * 24 * 7);
+  // weeks left
+  let weeksleft = Math.abs(nearestFutureBirthday - now) / (1000 * 3600 * 24 * 7);
   weeksleft = Math.floor(weeksleft);
 
+  // days left
+  let daysleft = Math.abs(nearestFutureBirthday - now) / (1000 * 3600 * 24);
+
+  //  age
+  let age = nearestFutureBirthday.getFullYear() - 2002;
+
+  console.log("nearestFutureBirthday.getFullYear()");
+  console.log(nearestFutureBirthday.getFullYear());
   // set custom text
   let customText;
   if (weeksleft >= 50) {
@@ -40,7 +45,8 @@ function App() {
     customText = "I am dead";
   }
 
-  if (now.getDate() === bday.getDate() && now.getMonth() === bday.getMonth()) {
+  // if today is my birthday
+  if (now.getDate() === nearestFutureBirthday.getDate() && now.getMonth() === nearestFutureBirthday.getMonth()) {
     return (
       <div className="w-screen h-screen bg-neutral-900 flex items-center justify-center">
         {/* background */}
@@ -59,10 +65,20 @@ function App() {
         <div className="absolute w-full h-full bg-neutral-900 flex items-center justify-center flex-col">
           <div id="just padding" className="mt-14"></div>
           <div className="lg:text-[5rem] sm:text-[3rem] md:text-[4rem] text-[2rem] text-white flex">
-            <div>{weeksleft}&nbsp;</div>
-            <div>{weeksleft === 1 ? "week" : "weeks"} left</div>
+            {/* render either weeks, days */}
+            {weeksleft > 0 ? (
+              <div className="flex">
+                <div>{weeksleft}&nbsp;</div>
+                <div>{weeksleft === 1 ? "week" : "weeks"} left</div>
+              </div>
+            ) : (
+              <div className="flex">
+                <div>{daysleft}&nbsp;</div>
+                <div>{daysleft === 1 ? "day" : "days"} left</div>
+              </div>
+            )}
           </div>
-          <div className="text-neutral-500 font-semibold">before I turn {passBirthday ? bday.getFullYear() - 2002 + 1 : bday.getFullYear() - 2002}</div>
+          <div className="text-neutral-500 font-semibold">before I turn {age}</div>
           <div className="text-neutral-500 font-semibold mt-14">{customText}</div>
         </div>
       </div>
