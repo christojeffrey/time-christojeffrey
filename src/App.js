@@ -13,6 +13,7 @@ function App() {
 
   // days left
   let daysleft = Math.abs(nearestFutureBirthday - now) / (1000 * 3600 * 24);
+  daysleft = Math.ceil(daysleft);
 
   //  age
   let age = nearestFutureBirthday.getFullYear() - 2002;
